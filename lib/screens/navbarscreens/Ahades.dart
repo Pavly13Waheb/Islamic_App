@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islamic/model/app_color.dart';
-import 'package:islamic/widgets/hadeth_title.dart';
+import 'package:islamic/widgets/ahadeth_details.dart';
 
 class Ahadeth extends StatefulWidget {
   @override
@@ -22,6 +22,14 @@ class _AhadethState extends State<Ahadeth> {
           flex: 2,
           child: Column(
             children: [
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.only(top: 30),
+                  child: Image(
+                    image: AssetImage("assets/ahadeth.png"),
+                  ),
+                ),
+              ),
               Divider(
                 thickness: 2,
                 color: AppColor.secColor,
@@ -35,17 +43,39 @@ class _AhadethState extends State<Ahadeth> {
                 color: AppColor.secColor,
               ),
               Expanded(
-                flex: 2,
-                child: Container(color: Colors.red,
-                  child: ListView.builder(
-                    itemCount: ahadethModel.length,
-                    itemBuilder: (context, index) {
-                      HadethTitle(ahadethModel[index]);
-
-                    },
-                  ),
+                child: ListView.builder(
+                  padding: EdgeInsets.only(top: 2, right: 20),
+                  itemCount: ahadethModel.length,
+                  itemBuilder: (context, index) {
+                    return Center(
+                      child: Column(
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, HadethDetails.routeName,
+                                  arguments: ahadethModel[index]);
+                            },
+                            child: Text(
+                              ahadethModel[index].title,
+                              style: TextStyle(
+                                fontSize: 25,
+                                color: AppColor.primColor,
+                              ),
+                            ),
+                          ),
+                          Divider(
+                            thickness: 3,
+                            color: AppColor.secColor,
+                            endIndent: 50,
+                            indent: 50,
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
-              ),
+              )
             ],
           ),
         ),
@@ -54,15 +84,14 @@ class _AhadethState extends State<Ahadeth> {
   }
 
   readAhadethFile() async {
-    String fileContent = await rootBundle.loadString("assets/ahadeth.txt");
-    List<String> ahadeth = fileContent.split("#\n\r");
-    for (int i = 0; 0 < ahadeth.length; i++) {
+    String hadethFile = await rootBundle.loadString("assets/ahadeth.txt");
+    List<String> ahadeth = hadethFile.split("#\r\n");
+
+    for (int i = 0; i < ahadeth.length; i++) {
       List<String> singleHadethLines = ahadeth[i].split("\n");
-      String title = singleHadethLines[0];
-      singleHadethLines.removeAt(0);
-      String content = singleHadethLines.join();
-      ahadethModel.add(HadethModel(title: '$title', content: '$content'));
-      print(ahadethModel);
+      String title = singleHadethLines.removeAt(0);
+      String content = singleHadethLines.join("\n");
+      ahadethModel.add(HadethModel(title: title, content: content));
     }
     setState(() {});
   }
@@ -71,5 +100,6 @@ class _AhadethState extends State<Ahadeth> {
 class HadethModel {
   String title;
   String content;
+
   HadethModel({required this.title, required this.content});
 }

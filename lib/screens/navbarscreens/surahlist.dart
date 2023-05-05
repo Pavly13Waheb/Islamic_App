@@ -131,12 +131,21 @@ class _SurahListState extends State<SurahList> {
     return Column(
       children: [
         Expanded(
+          flex: 4,
+          child: Container(
+            padding: EdgeInsets.only(top: 40),
+            child: Image(
+              image: AssetImage("assets/quran.png"),
+            ),
+          ),
+        ),
+        Expanded(
           flex: 7,
           child: Column(
             children: [
               Divider(
                 thickness: 3,
-                color:AppColor.secColor,
+                color: AppColor.secColor,
               ),
               Text(
                 "Surah",
@@ -152,21 +161,32 @@ class _SurahListState extends State<SurahList> {
                   itemCount: sura.length,
                   itemBuilder: (context, index) {
                     return Center(
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(context, SurahDetails.routeName,
-                              arguments: SuraDetailsArgs(
-                                fileName: "${index + 1}.txt",
-                                suraName: sura[index],
-                              ));
-                        },
-                        child: Text(
-                          sura[index],
-                          style: TextStyle(
-                            fontSize: 25,
-                            color:AppColor.primColor,
+                      child: Column(
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, SurahDetails.routeName,
+                                  arguments: SuraDetailsArgs(
+                                    fileName: "${index + 1}.txt",
+                                    suraName: sura[index],
+                                  ));
+                            },
+                            child: Text(
+                              sura[index],
+                              style: TextStyle(
+                                fontSize: 25,
+                                color: AppColor.primColor,
+                              ),
+                            ),
                           ),
-                        ),
+                          Divider(
+                            color: AppColor.primColor,
+                            indent: 100,
+                            endIndent: 100,
+                            thickness: 3,
+                          )
+                        ],
                       ),
                     );
                   },

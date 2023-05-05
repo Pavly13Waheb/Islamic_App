@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List navbar = [QuranRadio(), Sebha(), SurahList(), Ahadeth()];
-  int navbarpage = 2;
+  int navbarpage = 3;
 
   @override
   Widget build(BuildContext context) {
@@ -34,26 +34,13 @@ class _HomePageState extends State<HomePage> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/bg.png"),
             fit: BoxFit.fill,
           ),
         ),
-        child: Column(
-          children: [
-            Expanded(
-              flex: 4,
-              child: Container(
-                padding: EdgeInsets.only(top: 40),
-                child: Image(
-                  image: AssetImage("assets/quran.png"),
-                ),
-              ),
-            ),
-            Expanded(flex: 6, child: navbar[navbarpage])
-          ],
-        ),
+        child: navbar[navbarpage],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[

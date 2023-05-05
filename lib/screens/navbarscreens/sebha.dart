@@ -22,6 +22,15 @@ class _SebhaState extends State<Sebha> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Expanded(
+          flex: 4,
+          child: Container(
+            padding: EdgeInsets.only(top: 40),
+            child: Image(
+              image: AssetImage("assets/quran.png"),
+            ),
+          ),
+        ),
         Container(
             alignment: Alignment.center,
             child: Stack(
