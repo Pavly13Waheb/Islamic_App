@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islamic/screens/navbarscreens/Ahades.dart';
 import 'package:islamic/screens/navbarscreens/sebha.dart';
+import 'package:islamic/screens/navbarscreens/settings_tab.dart';
 import '../model/app_color.dart';
 import 'navbarscreens/radio.dart';
 import 'navbarscreens/surahlist.dart';
@@ -13,8 +14,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List navbar = [QuranRadio(), Sebha(), SurahList(), Ahadeth()];
-  int navbarpage = 3;
+  List navbar = [QuranRadio(), Sebha(), SurahList(), Ahadeth(), SettingsTab()];
+  int navbarpage = 4;
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +63,11 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Image.asset("assets/quranico.png", height: 30),
             label: 'Ahades',
+            backgroundColor: AppColor.secColor,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings, size: 30, color: AppColor.primColor,),
+            label: 'Settings',
             backgroundColor: AppColor.secColor,
           ),
         ],
