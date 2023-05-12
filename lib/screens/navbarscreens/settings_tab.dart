@@ -84,11 +84,11 @@ class _SettingsTabState extends State<SettingsTab> {
                   border: Border.all(color: AppColor.secColor)),
               child: DropdownButtonHideUnderline(
                   child:
-                  DropdownButton(
+                  DropdownButton<String>(
                     elevation: 0,
                     alignment: Alignment.center,
                     items: ["Light", "Dark"].map((e) =>
-                        DropdownMenuItem(value: e,
+                        DropdownMenuItem<String>(value: e,
                           child: Text(e,
                               style: TextStyle(
                                   color: AppColor.primColor,
@@ -98,6 +98,7 @@ class _SettingsTabState extends State<SettingsTab> {
                     onChanged: (value) {
                       setState(() {
                         mod = value;
+
                       });
                     },
                     value: mod,
