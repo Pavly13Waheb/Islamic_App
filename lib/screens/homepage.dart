@@ -5,6 +5,7 @@ import 'package:islamic/screens/navbarscreens/settings_tab.dart';
 import '../model/app_color.dart';
 import 'navbarscreens/radio.dart';
 import 'navbarscreens/surahlist.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePage extends StatefulWidget {
   static String routeName = "homepage";
@@ -15,7 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List navbar = [QuranRadio(), Sebha(), SurahList(), Ahadeth(), SettingsTab()];
-  int navbarpage = 4;
+  int navbarpage = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         shadowColor: Colors.transparent,
-        title: Text("Islam",
+        title: Text(AppLocalizations.of(context)!.islami,
             style: TextStyle(
                 color: AppColor.primColor,
                 fontSize: 30,
@@ -66,8 +67,12 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: AppColor.secColor,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings, size: 30, color: AppColor.primColor,),
-            label: 'Settings',
+            icon: Icon(
+              Icons.settings,
+              size: 30,
+              color: AppColor.primColor,
+            ),
+            label: AppLocalizations.of(context)!.setting,
             backgroundColor: AppColor.secColor,
           ),
         ],
