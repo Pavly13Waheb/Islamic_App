@@ -23,15 +23,9 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        shadowColor: Colors.transparent,
-        title: Text(AppLocalizations.of(context)!.islami,
-            style: TextStyle(
-                color: AppColor.primColor,
-                fontSize: 30,
-                fontWeight: FontWeight.bold)),
-        centerTitle: true,
+        title: Text(
+          AppLocalizations.of(context)!.islami,
+        ),
       ),
       body: Container(
         width: double.infinity,
@@ -73,16 +67,10 @@ class _HomePageState extends State<HomePage> {
               color: AppColor.primColor,
             ),
             label: AppLocalizations.of(context)!.setting,
-            backgroundColor: AppColor.secColor,
+            backgroundColor: AppColor.primColorDark,
           ),
         ],
-        selectedLabelStyle:
-            TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
         currentIndex: navbarpage,
-        elevation: 0,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        selectedItemColor: AppColor.primColor,
         onTap: (int index) {
           navbarpage = index;
           setState(() {});

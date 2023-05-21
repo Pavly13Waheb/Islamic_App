@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islamic/model/app_theme.dart';
 import '../../model/app_color.dart';
 import '../../model/surah_details_arguments.dart';
 import '../../widgets/surah_details.dart';
@@ -149,7 +150,7 @@ class _SurahListState extends State<SurahList> {
               ),
               Text(
                 "Surah",
-                style: TextStyle(color: Color(0XFF242424), fontSize: 25),
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
               Divider(
                 thickness: 3,
@@ -174,10 +175,7 @@ class _SurahListState extends State<SurahList> {
                             },
                             child: Text(
                               sura[index],
-                              style: TextStyle(
-                                fontSize: 25,
-                                color: AppColor.primColor,
-                              ),
+                              style: Theme.of(context).textTheme.bodyLarge,
                             ),
                           ),
                           Divider(

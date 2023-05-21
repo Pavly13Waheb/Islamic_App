@@ -7,6 +7,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
+import 'model/app_theme.dart';
+
 void main() {
   runApp(ChangeNotifierProvider(
       create: (_) => SettingsProvider(), child: MyApp()));
@@ -17,7 +19,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SettingsProvider provider = Provider.of(context);
+
     return MaterialApp(
+      themeMode: ThemeMode.dark,
+      darkTheme: AppTheme.darkTheme,
+      theme: AppTheme.lightTheme,
       title: 'Localizations Sample App',
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,

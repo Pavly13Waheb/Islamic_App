@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../model/app_color.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import '../../settings_provider.dart';
 
 class SettingsTab extends StatefulWidget {
@@ -11,12 +10,12 @@ class SettingsTab extends StatefulWidget {
 }
 
 class _SettingsTabState extends State<SettingsTab> {
-  var language;
   var mod;
 
   @override
   Widget build(BuildContext context) {
     SettingsProvider provider = Provider.of(context);
+    var language = provider.currentLocale;
     return Container(
       padding: EdgeInsets.only(
           top: MediaQuery.of(context).size.height * 0.16, left: 5, right: 5),
@@ -50,9 +49,7 @@ class _SettingsTabState extends State<SettingsTab> {
                   DropdownMenuItem(
                     value: "en",
                     child: Text("English",
-                        style: TextStyle(
-                            color: AppColor.primColor,
-                            fontWeight: FontWeight.bold)),
+                        style: Theme.of(context).textTheme.bodyLarge),
                     onTap: () {
                       provider.currentLocale = "en";
                       provider.notifyListeners();
@@ -61,9 +58,7 @@ class _SettingsTabState extends State<SettingsTab> {
                   DropdownMenuItem(
                     value: "ar",
                     child: Text("العربية",
-                        style: TextStyle(
-                            color: AppColor.primColor,
-                            fontWeight: FontWeight.bold)),
+                        style: Theme.of(context).textTheme.bodyLarge),
                     onTap: () {
                       provider.currentLocale = "ar";
                       provider.notifyListeners();
@@ -72,7 +67,7 @@ class _SettingsTabState extends State<SettingsTab> {
                 ],
                 onChanged: (value) {
                   setState(() {
-                    language = value;
+                    language = value!;
                   });
                 },
                 value: language,
