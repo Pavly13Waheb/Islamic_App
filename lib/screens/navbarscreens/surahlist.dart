@@ -196,5 +196,4 @@ class _SurahListState extends State<SurahList> {
       ],
     );
   }
-
 }
