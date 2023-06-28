@@ -16,7 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List navbar = [QuranRadio(), Sebha(), SurahList(), Ahadeth(), SettingsTab()];
-  int navbarpage = 2;
+  int navbarpage = 0;
 
   @override
   Widget build(BuildContext context) {
