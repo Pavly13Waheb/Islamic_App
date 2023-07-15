@@ -10,13 +10,10 @@ class SettingsTab extends StatefulWidget {
 }
 
 class _SettingsTabState extends State<SettingsTab> {
-  var mod;
 
   @override
   Widget build(BuildContext context) {
     SettingsProvider provider = Provider.of(context);
-    String? language = provider.currentLocale;
-    ThemeMode? mod = provider.currentTheme;
     return ChangeNotifierProvider(
       create: (context) => provider,
       builder: (context, child) {
@@ -47,36 +44,35 @@ class _SettingsTabState extends State<SettingsTab> {
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
                       border: Border.all(color: AppColor.primColor)),
                   child: DropdownButtonHideUnderline(
-                      child: DropdownButton(
-                    elevation: 0,
-                    alignment: Alignment.center,
-                    items: [
-                      DropdownMenuItem(
-                        value: "en",
-                        child: Text("English",
-                            style: Theme.of(context).textTheme.bodySmall),
-                        onTap: () async {
-                          provider.currentLocale = "en";
-                          provider.notifyListeners();
-                        },
-                      ),
-                      DropdownMenuItem(
-                        value: "ar",
-                        child: Text("العربية",
-                            style: Theme.of(context).textTheme.bodySmall),
-                        onTap: () async {
-                          provider.currentLocale = "ar";
-                          provider.notifyListeners();
-                        },
-                      )
-                    ],
-                    onChanged: (value) {
-                      // setState(() {
-                      //   language = value;
-                      // });
-                    },
-                    value: language,
-                  )),
+                    child: DropdownButton(
+                      elevation: 0,
+                      alignment: Alignment.center,
+                      items: [
+                        DropdownMenuItem(
+                          value: "en",
+                          child: Text("English",
+                              style: Theme.of(context).textTheme.bodySmall),
+                          onTap: () async {
+                            provider.changeLanguage("en");
+                            provider.currentLocale = "en";
+                            provider.notifyListeners();
+                          },
+                        ),
+                        DropdownMenuItem(
+                          value: "ar",
+                          child: Text("العربية",
+                              style: Theme.of(context).textTheme.bodySmall),
+                          onTap: () async {
+                            provider.changeLanguage("ar");
+                            provider.currentLocale = "ar";
+                            provider.notifyListeners();
+                          },
+                        ),
+                      ],
+                      onChanged: (value) {},
+                      value: provider.currentLocale,
+                    ),
+                  ),
                 ),
                 Text(
                     textAlign: TextAlign.start,
@@ -97,32 +93,28 @@ class _SettingsTabState extends State<SettingsTab> {
                       alignment: Alignment.center,
                       items: [
                         DropdownMenuItem(
-                          value: ThemeMode.light,
-                          child: Text(AppLocalizations.of(context)!.light,
-                              style: Theme.of(context).textTheme.bodySmall),
-                          onTap: () {
-                            provider.currentTheme = ThemeMode.light;
-                            provider.notifyListeners();
-                          },
-                        ),
-                        DropdownMenuItem(
                           value: ThemeMode.dark,
                           child: Text(AppLocalizations.of(context)!.dark,
                               style: Theme.of(context).textTheme.bodySmall),
                           onTap: () {
+                            provider.changeTheme(ThemeMode.dark);
                             provider.currentTheme = ThemeMode.dark;
                             provider.notifyListeners();
                           },
                         ),
+                        DropdownMenuItem(
+                          value: ThemeMode.light,
+                          child: Text(AppLocalizations.of(context)!.light,
+                              style: Theme.of(context).textTheme.bodySmall),
+                          onTap: () {
+                            provider.changeTheme(ThemeMode.light);
+                            provider.currentTheme = ThemeMode.light;
+                            provider.notifyListeners();
+                          },
+                        ),
                       ],
-                      onChanged: (value) {
-                        // setState(
-                        //       () {
-                        //     mod = value;
-                        //   },
-                        // );
-                      },
-                      value: mod,
+                      onChanged: (value) {},
+                      value: provider.currentTheme,
                     ),
                   ),
                 ),
